@@ -14,9 +14,7 @@ $
 ```
 The files are time-stamped based on their included date
 ```
-$ ls -l 
-total 4896
--rwxr-xr-x  1 martin  martin   4129 Feb 22 12:15 fetch_pico_firmware.py
+$ ls -l *.uf2
 -rw-r--r--  1 martin  martin 497664 Feb  2 00:00 rp2-pico-20210202-v1.14.uf2
 -rw-r--r--  1 martin  martin 497664 Feb 19 00:00 rp2-pico-20210219-unstable-v1.14-70-g143372ab5.uf2
 -rw-r--r--  1 martin  martin 497664 Feb 20 00:00 rp2-pico-20210220-unstable-v1.14-72-gd28dbcd6c.uf2
