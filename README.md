@@ -35,6 +35,20 @@ $
 ```
 Over time, by running this occasionally, you will end up with a complete collection of firmwares for running and testing.
 
+## Command line flags
+
+```
+$ ./fetch_pico_firmware.py -H
+usage: fetch_firmware_rp2 [-H|--help] [-q|--quiet] [-v|--verbose] [-o|--overwrite] [-u|--utc] 
+$
+```
+
+`-H` - Help message
+`-q` - No output during normal operations
+`-v` - debug/verbose info
+'-o' - overwrite the files 
+'-u' - run in UTC timezone
+
 ## Install
 
 Grabbing from _github_ is easy. Adjust the folder/directory choice as-needed.
@@ -63,7 +77,7 @@ Throwing something in crontab should be easy to do; however, once the firmware b
 Edit your crontab (via the `crontab -e` command) and add the following line:
 
 ```
-@daily cd $HOME/fetch_pico_firmware && ./fetch_pico_firmware.py
+@daily cd $HOME/fetch_pico_firmware && ./fetch_pico_firmware.py -q
 
 ```
 You can change the path as-needed.

@@ -27,6 +27,7 @@ PATH = '/download/rp2-pico/'
 # As there is no time, we use 00:00:00 and also UTC (because that's the right thing to do)
 #
 
+quiet_flag = False
 verbose_flag = False
 overwrite_flag = False
 utc_flag = False
@@ -63,6 +64,7 @@ def find_firmware(url_or_filename):
 def touch_file(filename, date):
 	""" Raspberry Pi Pico Micropython firmware download """
 
+	global quiet_flag, verbose_flag, overwrite_flag
 	global utc_flag
 
 	if utc_flag:
@@ -82,13 +84,15 @@ def touch_file(filename, date):
 def download_firmware(filename, full_path_url):
 	""" Raspberry Pi Pico Micropython firmware download """
 
-	global overwrite_flag
+	global quiet_flag, verbose_flag, overwrite_flag
 
 	if not overwrite_flag:
 		if os.path.isfile(filename):
-			print("%s: already downloaded, hence skipped" % (filename), file=sys.stderr)
+			if not quiet_flag:
+				print("%s: already downloaded, hence skipped" % (filename), file=sys.stderr)
 			return
 
+	# we dont quiet this message as it's actually doing something we need to know about!
 	print("%s: downloading from %s" % (filename, full_path_url), file=sys.stderr)
 	try:
 		r = requests.get(full_path_url, allow_redirects=True)
@@ -122,10 +126,11 @@ def download_all_firmware(list_of_firmware_files):
 def doit(args=None):
 	""" Raspberry Pi Pico Micropython firmware download """
 
-	global verbose_flag, overwrite_flag, utc_flag
+	global quiet_flag, verbose_flag, overwrite_flag, utc_flag
 
 	usage = ('usage: fetch_firmware_rp2 '
 		 + '[-H|--help] '
+		 + '[-q|--quiet] '
 		 + '[-v|--verbose] '
 		 + '[-o|--overwrite] '
 		 + '[-u|--utc] '
@@ -133,9 +138,10 @@ def doit(args=None):
 
 	try:
 		opts, args = getopt.getopt(args,
-					   'Hvou',
+					   'Hqvou',
 					   [
 					   	'help',
+						'quiet',
 					   	'version',
 						'overwrite',
 						'utc'
@@ -146,6 +152,8 @@ def doit(args=None):
 	for opt, arg in opts:
 		if opt in ('-H', '--help'):
 			exit(usage)
+		elif opt in ('-q', '--quiet'):
+			quiet_flag = True
 		elif opt in ('-v', '--verbose'):
 			verbose_flag = True
 		elif opt in ('-o', '--overwrite'):
