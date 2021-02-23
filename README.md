@@ -44,9 +44,13 @@ $
 ```
 
 `-H` - Help message
+
 `-q` - No output during normal operations
+
 `-v` - debug/verbose info
+
 '-o' - overwrite the files 
+
 '-u' - run in UTC timezone
 
 ## Install
