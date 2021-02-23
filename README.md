@@ -49,9 +49,9 @@ $
 
 `-v` - debug/verbose info
 
-'-o' - overwrite the files 
+`-o` - overwrite the files 
 
-'-u' - run in UTC timezone
+`-u` - run in UTC timezone
 
 ## Install
 
