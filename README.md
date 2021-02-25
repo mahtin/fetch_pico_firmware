@@ -86,6 +86,25 @@ Edit your crontab (via the `crontab -e` command) and add the following line:
 ```
 You can change the path as-needed.
 
+Once running, you will receive email's when new firmwall shows up.
+
+```
+$ Mail
+>U  1 martin@rpi.  Wed Feb 24 18:00  19/834   "Cron <martin@rpi> cd $HOME/tmp/rpi-pico && ./fetch_pico_firmware.py -q"
+? 1
+Message 1:
+From user@rpi.local  Wed Feb 24 18:00:04 2021
+From: martin@rpi.local (Cron Daemon)
+To: martin@rpi.local
+Subject: Cron <martin@rpi> cd $HOME/tmp/rpi-pico && ./fetch_pico_firmware.py -q
+Date: Wed, 24 Feb 2021 18:00:03 -0800 (PST)
+
+rp2-pico-20210225-unstable-v1.14-82-gcdaec0dca.uf2: downloading from https://micropython.org/resources/firmware/rp2-pico-20210225-unstable-v1.14-82-gcdaec0dca.uf2
+
+? x
+$
+```
+
 ## Notes
 
 As always, open issues or pull requests should you need - Martin
